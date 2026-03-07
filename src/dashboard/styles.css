@@ -1,0 +1,108 @@
+/* Santo Domingo Real Estate Insight - Estilos del dashboard */
+
+:root {
+    --bg: #0f1419;
+    --surface: #1a2332;
+    --border: #2d3a4d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --success: #3fb950;
+    --danger: #f85149;
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+.header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+}
+.header h1 { margin: 0; font-size: 1.5rem; }
+.subtitle { margin: 0.25rem 0 0; color: var(--muted); font-size: 0.9rem; }
+.container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+.panel h2 { margin: 0 0 1rem; font-size: 1.1rem; }
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.filtros input, .filtros select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.9rem;
+}
+.filtros input[type="text"], .filtros input[type="number"] { min-width: 120px; }
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+button:hover { filter: brightness(1.1); }
+button#btnCancelar { background: var(--muted); }
+.estado { margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--muted); }
+.lista { min-height: 120px; }
+.item-inmueble {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.item-inmueble:last-child { border-bottom: none; }
+.item-inmueble .titulo { font-weight: 600; }
+.item-inmueble .detalle { color: var(--muted); font-size: 0.85rem; }
+.item-inmueble .precio { color: var(--success); }
+.item-inmueble .actions { display: flex; gap: 0.5rem; }
+.item-inmueble .actions button { padding: 0.35rem 0.65rem; font-size: 0.8rem; }
+.item-inmueble .actions .editar { background: var(--accent); }
+.item-inmueble .actions .eliminar { background: var(--danger); }
+.paginacion { margin-top: 1rem; font-size: 0.9rem; color: var(--muted); }
+.formulario-panel label { display: block; margin-bottom: 0.75rem; }
+.formulario-panel label input,
+.formulario-panel label select,
+.formulario-panel label textarea {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.9rem;
+}
+.form-actions { margin-top: 1rem; display: flex; gap: 0.5rem; }
+.footer {
+    text-align: center;
+    padding: 1rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+}

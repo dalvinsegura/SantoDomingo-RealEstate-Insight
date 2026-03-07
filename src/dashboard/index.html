@@ -1,10 +1,64 @@
-<!-- src/dashboard/index.html -->
-<!-- Aqui ira la estructura HTML del dashboard -->
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Santo Domingo Real Estate Insight</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header class="header">
+        <h1>🏠 Santo Domingo Real Estate Insight</h1>
+        <p class="subtitle">CRUD de inmuebles · Listados y formularios</p>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2>Listado de inmuebles</h2>
+            <div class="filtros">
+                <input type="text" id="filtroUbicacion" placeholder="Filtrar por ubicación">
+                <input type="number" id="filtroPrecioMin" placeholder="Precio mín">
+                <input type="number" id="filtroPrecioMax" placeholder="Precio máx">
+                <button type="button" id="btnBuscar">Buscar</button>
+                <button type="button" id="btnNuevo">+ Nuevo inmueble</button>
+            </div>
+            <div id="estadoConexion" class="estado"></div>
+            <div id="listaInmuebles" class="lista"></div>
+            <div id="paginacion" class="paginacion"></div>
+        </section>
+
+        <section id="seccionFormulario" class="panel formulario-panel" hidden>
+            <h2 id="tituloForm">Nuevo inmueble</h2>
+            <form id="formInmueble">
+                <input type="hidden" id="inmuebleId">
+                <label>Título <input type="text" id="titulo" required></label>
+                <label>Precio (USD) <input type="number" id="precio" step="0.01" required></label>
+                <label>Ubicación <input type="text" id="ubicacion"></label>
+                <label>Área (m²) <input type="number" id="area_m2" step="0.01"></label>
+                <label>Habitaciones <input type="number" id="habitaciones" min="0"></label>
+                <label>Baños <input type="number" id="banos" min="0" step="0.5"></label>
+                <label>Tipo
+                    <select id="tipo">
+                        <option value="casa">Casa</option>
+                        <option value="apartamento">Apartamento</option>
+                        <option value="terreno">Terreno</option>
+                        <option value="local">Local</option>
+                    </select>
+                </label>
+                <label>Enlace <input type="url" id="enlace" placeholder="https://..."></label>
+                <label>Fuente <input type="text" id="fuente" placeholder="ej. SuperCasas"></label>
+                <label>Descripción <textarea id="descripcion" rows="3"></textarea></label>
+                <div class="form-actions">
+                    <button type="submit" id="btnGuardar">Guardar</button>
+                    <button type="button" id="btnCancelar">Cancelar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Santo Domingo Real Estate Insight · Integración MongoDB · CRUD completo</p>
+    </footer>
+    <script src="app.js"></script>
 </body>
 </html>
