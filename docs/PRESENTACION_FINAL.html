@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santo Domingo Real Estate Insight — Presentación Final</title>
+
+  <!-- Reveal.js CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Global overrides ─────────────────────────────────────────── */
+    :root {
+      --navy:    #0f172a;
+      --navy2:   #1e293b;
+      --navy3:   #334155;
+      --blue:    #3b82f6;
+      --cyan:    #06b6d4;
+      --teal:    #0ea5e9;
+      --green:   #22c55e;
+      --amber:   #f59e0b;
+      --red:     #ef4444;
+      --orange:  #f97316;
+      --text:    #f1f5f9;
+      --muted:   #94a3b8;
+      --card-bg: rgba(30, 41, 59, 0.85);
+    }
+
+    .reveal-viewport { background: var(--navy); }
+
+    .reveal {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      text-transform: none;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-shadow: none;
+    }
+
+    .reveal h1 { font-size: 2.4em; line-height: 1.1; }
+    .reveal h2 { font-size: 1.6em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; font-weight: 600; }
+    .reveal p, .reveal li { line-height: 1.6; }
+    .reveal ul { list-style: none; padding: 0; margin: 0; }
+    .reveal section { padding: 0 !important; }
+
+    /* progress bar */
+    .reveal .progress { color: var(--cyan); height: 4px; }
+
+    /* slide number */
+    .reveal .slide-number {
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.7em;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ─── Slide wrapper ────────────────────────────────────────────── */
+    .slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 60px;
+      box-sizing: border-box;
+    }
+
+    .slide.top { justify-content: flex-start; padding-top: 48px; }
+
+    /* ─── Accent line under section heading ────────────────────────── */
+    .section-title {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .section-title h2 {
+      display: inline-block;
+      position: relative;
+      padding-bottom: 10px;
+      margin: 0;
+    }
+    .section-title h2::after {
+      content: '';
+      display: block;
+      width: 56px;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      margin-top: 8px;
+    }
+
+    /* ─── Gradient badge ────────────────────────────────────────────── */
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.65em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge-blue   { background: rgba(59,130,246,.18); color: var(--blue); border: 1px solid rgba(59,130,246,.35); }
+    .badge-cyan   { background: rgba(6,182,212,.18);  color: var(--cyan); border: 1px solid rgba(6,182,212,.35); }
+    .badge-green  { background: rgba(34,197,94,.18);  color: var(--green); border: 1px solid rgba(34,197,94,.35); }
+    .badge-red    { background: rgba(239,68,68,.18);  color: var(--red);  border: 1px solid rgba(239,68,68,.35); }
+    .badge-orange { background: rgba(249,115,22,.18); color: var(--orange); border: 1px solid rgba(249,115,22,.35); }
+    .badge-amber  { background: rgba(245,158,11,.18); color: var(--amber); border: 1px solid rgba(245,158,11,.35); }
+
+    /* ─── Card ──────────────────────────────────────────────────────── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 24px 28px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* ─── Screenshot placeholder ────────────────────────────────────── */
+    .screenshot {
+      width: 100%;
+      border: 2px dashed rgba(6,182,212,.5);
+      border-radius: 14px;
+      background: rgba(6,182,212,.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: 0.82em;
+      letter-spacing: 0.02em;
+      text-align: center;
+      padding: 18px 12px;
+      box-sizing: border-box;
+    }
+    .screenshot .cam { font-size: 2.2em; line-height: 1; }
+    .screenshot .label { opacity: .9; }
+    .screenshot .hint  { font-size: 0.72em; font-weight: 400; color: var(--muted); margin-top: 2px; }
+
+    /* sizes */
+    .ss-lg  { min-height: 280px; }
+    .ss-md  { min-height: 200px; }
+    .ss-sm  { min-height: 160px; }
+
+    /* ─── Two-column layout ─────────────────────────────────────────── */
+    .cols { display: grid; width: 100%; gap: 24px; }
+    .cols-2 { grid-template-columns: 1fr 1fr; }
+    .cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .cols-55 { grid-template-columns: 1.1fr .9fr; }
+
+    /* ─── Code block ─────────────────────────────────────────────────── */
+    .code-block {
+      background: #020817;
+      border: 1px solid rgba(59,130,246,.25);
+      border-left: 3px solid var(--blue);
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7em;
+      color: #7dd3fc;
+      text-align: left;
+      white-space: pre;
+      overflow: hidden;
+    }
+
+    /* ─── Pipeline flow ──────────────────────────────────────────────── */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      width: 100%;
+    }
+    .pipe-step {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 0.72em;
+      font-weight: 600;
+      color: var(--cyan);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .pipe-arrow {
+      color: var(--muted);
+      font-size: 1.2em;
+      padding: 0 8px;
+      flex-shrink: 0;
+    }
+
+    /* ─── Checklist ──────────────────────────────────────────────────── */
+    .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 0;
+      font-size: 0.78em;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-icon { font-size: 1em; flex-shrink: 0; }
+
+    /* ─── Roadmap item ───────────────────────────────────────────────── */
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .roadmap-item:last-child { border-bottom: none; }
+    .roadmap-icon { font-size: 1.4em; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .roadmap-text strong { display: block; font-size: 0.82em; font-weight: 700; color: #fff; }
+    .roadmap-text span   { font-size: 0.72em; color: var(--muted); }
+
+    /* ─── API table ──────────────────────────────────────────────────── */
+    .api-table { width: 100%; border-collapse: collapse; font-size: 0.7em; }
+    .api-table th {
+      text-align: left;
+      padding: 8px 12px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .api-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      color: var(--text);
+    }
+    .api-table tr:last-child td { border-bottom: none; }
+    .method {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      font-weight: 700;
+    }
+    .m-get    { background: rgba(34,197,94,.15);  color: #4ade80; }
+    .m-post   { background: rgba(59,130,246,.15); color: #60a5fa; }
+    .m-put    { background: rgba(249,115,22,.15); color: #fb923c; }
+    .m-patch  { background: rgba(245,158,11,.15); color: #fbbf24; }
+    .m-delete { background: rgba(239,68,68,.15);  color: #f87171; }
+    .endpoint-path {
+      font-family: 'JetBrains Mono', monospace;
+      color: #94a3b8;
+      font-size: 0.88em;
+    }
+
+    /* ─── DB schema ──────────────────────────────────────────────────── */
+    .schema-table { width: 100%; border-collapse: collapse; font-size: 0.68em; }
+    .schema-table th {
+      text-align: left;
+      padding: 6px 10px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.82em;
+      letter-spacing: .05em;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .schema-table td {
+      padding: 5px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .schema-table tr:last-child td { border-bottom: none; }
+    .field-name { color: #7dd3fc; }
+    .field-type { color: #a78bfa; }
+    .field-note { color: var(--muted); font-size: 0.85em; font-family: 'Inter', sans-serif; }
+    .field-special { color: var(--amber) !important; }
+
+    /* ─── Problem row ────────────────────────────────────────────────── */
+    .problem-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      font-size: 0.73em;
+    }
+    .problem-row:last-child { border-bottom: none; }
+    .prob { color: var(--amber); font-weight: 600; flex: 0 0 auto; }
+    .arrow-r { color: var(--muted); flex-shrink: 0; }
+    .sol { color: var(--text); }
+
+    /* ─── Gradient text ──────────────────────────────────────────────── */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── Pill row ───────────────────────────────────────────────────── */
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .pill {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 5px 18px;
+      font-size: 0.72em;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ─── Highlight box ──────────────────────────────────────────────── */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(6,182,212,.12));
+      border: 1px solid rgba(6,182,212,.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      font-size: 0.8em;
+      color: #e2e8f0;
+      text-align: center;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ─── Skill grid ─────────────────────────────────────────────────── */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+    .skill-item {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.7em;
+      font-weight: 600;
+      color: var(--cyan);
+      text-align: center;
+    }
+
+    /* ─── Architecture diagram ───────────────────────────────────────── */
+    .arch-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      padding: 20px 28px;
+      text-align: center;
+    }
+    .arch-label {
+      font-size: 0.65em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .arch-name {
+      font-size: 0.9em;
+      font-weight: 700;
+      color: #fff;
+    }
+    .arch-port {
+      display: inline-block;
+      margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65em;
+      color: var(--cyan);
+      background: rgba(6,182,212,.12);
+      border-radius: 6px;
+      padding: 2px 10px;
+    }
+    .arch-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.65em;
+      gap: 4px;
+      padding: 0 4px;
+    }
+    .arch-arrow .arr { font-size: 1.8em; line-height: 1; color: var(--blue); }
+    .arch-arrow .lbl { font-weight: 600; letter-spacing: .05em; color: var(--muted); }
+
+    /* ─── Numbered steps ─────────────────────────────────────────────── */
+    .steps { list-style: none; padding: 0; margin: 0; }
+    .steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 7px 0;
+      font-size: 0.75em;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .steps li:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75em;
+      font-weight: 800;
+      color: #fff;
+      margin-top: 1px;
+    }
+
+    /* ─── Title slide specifics ──────────────────────────────────────── */
+    .title-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59,130,246,.25) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 90% 110%, rgba(6,182,212,.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .title-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .title-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.65em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: var(--cyan);
+    }
+    .title-eyebrow::before,
+    .title-eyebrow::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--cyan);
+      opacity: .5;
+    }
+
+    /* fragment fade-in tweak */
+    .reveal .fragment { transition: opacity .35s ease, transform .35s ease; transform: translateY(6px); }
+    .reveal .fragment.visible { transform: translateY(0); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ═══════════════════════════════════════════════════ SLIDE 1 — TÍTULO -->
+<section>
+  <div class="title-bg"></div>
+  <div class="title-content">
+    <div class="title-eyebrow">Proyecto Final</div>
+    <h1 class="gradient-text">Santo Domingo<br>Real Estate Insight</h1>
+    <p style="color:var(--muted);font-size:.85em;max-width:560px;line-height:1.7;margin:0">
+      Plataforma integral de gestión y análisis del mercado inmobiliario en la República Dominicana
+    </p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px;">
+      <div class="pill">🏠 Ingeniería de Software</div>
+      <div class="pill">📅 Abril 2026</div>
+    </div>
+    <div style="margin-top:16px;background:var(--card-bg);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 32px;text-align:center;">
+      <div style="font-size:.6em;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:8px;">Integrantes del grupo</div>
+      <div style="font-size:.82em;font-weight:600;color:#e2e8f0;">
+        [ Nombre 1 ] &nbsp;·&nbsp; [ Nombre 2 ] &nbsp;·&nbsp; [ Nombre 3 ]
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ SLIDE 2 — EL PROBLEMA -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>¿Por qué este proyecto?</h2></div>
+    <div style="width:100%;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+      <div class="card fragment" style="display:flex;align-items:center;gap:16px;padding:16px 22px;">
+        <span style="font-size:1.6em;flex-shrink:0;">🗂️</span>
+        <div>
+          <strong style="font-size:.82em;">Mercado fragmentado</strong>
+          <p style="font-size:.72em;color:var(--muted);margin:2px 0 0;">Datos dispersos en múltiples portales (clasificados.com.do, supercasas.com, etc.)</p>
+        </div>
+      </div>
+      <div class="card fragment" style="display:flex;align-items:center;gap:16px;padding:16px 22px;">
+        <span style="font-size:1.6em;flex-shrink:0;">📊</span>
+        <div>
+          <strong style="font-size:.82em;">Sin comparación de precios por sector</strong>
+          <p style="font-size:.72em;color:var(--muted);margin:2px 0 0;">No existe una herramienta accesible que muestre qué sectores son más caros o baratos</p>
+        </div>
+      </div>
+      <div class="card fragment" style="display:flex;align-items:center;gap:16px;padding:16px 22px;">
+        <span style="font-size:1.6em;flex-shrink:0;">❓</span>
+        <div>
+          <strong style="font-size:.82em;">¿Este precio es justo?</strong>
+          <p style="font-size:.72em;color:var(--muted);margin:2px 0 0;">Imposible saberlo sin años de experiencia en el mercado local</p>
+        </div>
+      </div>
+      <div class="card fragment" style="display:flex;align-items:center;gap:16px;padding:16px 22px;">
+        <span style="font-size:1.6em;flex-shrink:0;">⏱️</span>
+        <div>
+          <strong style="font-size:.82em;">Tiempo perdido</strong>
+          <p style="font-size:.72em;color:var(--muted);margin:2px 0 0;">Compradores y corredores navegan decenas de páginas para recopilar información básica</p>
+        </div>
+      </div>
+    </div>
+    <div class="highlight-box fragment" style="width:100%;">
+      💡 <strong>Nuestra propuesta:</strong> centralizar, normalizar y analizar esa información en un solo lugar.
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ SLIDE 3 — LA SOLUCIÓN -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>¿Qué construimos?</h2></div>
+    <div class="cols cols-3" style="width:100%;margin-bottom:24px;">
+      <div class="card fragment" style="text-align:center;padding:32px 20px;">
+        <div style="font-size:2.4em;margin-bottom:12px;">🕷️</div>
+        <h3 style="color:var(--cyan);font-size:.9em;margin-bottom:8px;">Scraping</h3>
+        <p style="font-size:.72em;color:var(--muted);line-height:1.6;margin:0;">Extrae propiedades de portales reales automáticamente y las normaliza</p>
+      </div>
+      <div class="card fragment" style="text-align:center;padding:32px 20px;border-color:rgba(59,130,246,.35);">
+        <div style="font-size:2.4em;margin-bottom:12px;">⚙️</div>
+        <h3 style="color:var(--blue);font-size:.9em;margin-bottom:8px;">Backend API</h3>
+        <p style="font-size:.72em;color:var(--muted);line-height:1.6;margin:0;">Almacena, valida y expone los datos mediante 8 endpoints REST</p>
+      </div>
+      <div class="card fragment" style="text-align:center;padding:32px 20px;border-color:rgba(34,197,94,.3);">
+        <div style="font-size:2.4em;margin-bottom:12px;">🖥️</div>
+        <h3 style="color:var(--green);font-size:.9em;margin-bottom:8px;">Dashboard</h3>
+        <p style="font-size:.72em;color:var(--muted);line-height:1.6;margin:0;">Gestiona, busca, calcula precios y visualiza el mercado en un mapa interactivo</p>
+      </div>
+    </div>
+    <div class="highlight-box fragment" style="width:100%;">
+      Tres capas independientes que trabajan juntas — el usuario final solo ve el dashboard.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ SLIDE 4 — STACK TECNO -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Herramientas utilizadas</h2></div>
+    <div class="cols cols-2" style="width:100%;margin-bottom:16px;">
+      <div class="card" style="padding:24px 28px;">
+        <div style="font-size:.62em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:14px;">⚙️ Backend</div>
+        <ul style="display:flex;flex-direction:column;gap:8px;">
+          <li class="fragment" style="display:flex;align-items:center;gap:10px;font-size:.75em;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;"></span>
+            <span><strong>Python 3.13</strong> — Lenguaje principal</span>
+          </li>
+          <li class="fragment" style="display:flex;align-items:center;gap:10px;font-size:.75em;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;"></span>
+            <span><strong>Flask 3</strong> — Framework REST API</span>
+          </li>
+          <li class="fragment" style="display:flex;align-items:center;gap:10px;font-size:.75em;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;"></span>
+            <span><strong>SQLite</strong> — Base de datos embebida</span>
+          </li>
+          <li class="fragment" style="display:flex;align-items:center;gap:10px;font-size:.75em;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;"></span>
+            <span><strong>BeautifulSoup + requests</strong> — Scraping</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card" style="padding:24px 28px;">
+        <div style="font-size:.62em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:14px;">🖥️ Frontend</div>
+        <ul style="display:flex;flex-direction:column;gap:8px;">
+          <li class="fragment" style="display:flex;align-items:center;gap:10px;font-size:.75em;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--cyan);flex-shrink:0;"></span>
+            <span><strong>Next.js 16</strong> + React 19 — App Router</span>
+          </li>
+          <li class="fragment" style="display:flex;align-items:center;gap:10px;font-size:.75em;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--cyan);flex-shrink:0;"></span>
+            <span><strong>ShadCN UI</strong> + Tailwind CSS 4</span>
+          </li>
+          <li class="fragment" style="display:flex;align-items:center;gap:10px;font-size:.75em;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--cyan);flex-shrink:0;"></span>
+            <span><strong>TypeScript</strong> — Tipado estático</span>
+          </li>
+          <li class="fragment" style="display:flex;align-items:center;gap:10px;font-size:.75em;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--cyan);flex-shrink:0;"></span>
+            <span><strong>Leaflet 1.9</strong> — Mapa interactivo</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card fragment" style="padding:14px 24px;width:100%;box-sizing:border-box;">
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <span style="font-size:.62em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">🛠 Herramientas</span>
+        <div class="pill-row" style="justify-content:flex-start;">
+          <span class="badge badge-blue">Git + GitHub</span>
+          <span class="badge badge-cyan">pnpm</span>
+          <span class="badge badge-green">SQLite CLI</span>
+          <span class="badge badge-amber">Flask-CORS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ SLIDE 5 — ARQUITECTURA -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Arquitectura del sistema</h2></div>
+    <div style="width:100%;display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:24px;">
+      <div class="arch-box" style="flex:1;">
+        <div class="arch-label">Cliente</div>
+        <div class="arch-name">Next.js</div>
+        <div class="arch-port">:3000</div>
+        <div style="font-size:.6em;color:var(--muted);margin-top:8px;line-height:1.6;">
+          components/<br>lib/api.ts<br>types/
+        </div>
+      </div>
+      <div class="arch-arrow">
+        <div class="arr">⇄</div>
+        <div class="lbl">REST API</div>
+        <div class="lbl">JSON</div>
+      </div>
+      <div class="arch-box" style="flex:1;border-color:rgba(59,130,246,.3);">
+        <div class="arch-label">Servidor</div>
+        <div class="arch-name">Flask</div>
+        <div class="arch-port">:5001</div>
+        <div style="font-size:.6em;color:var(--muted);margin-top:8px;line-height:1.6;">
+          app.py<br>crud.py<br>forms.py
+        </div>
+      </div>
+      <div class="arch-arrow">
+        <div class="arr">→</div>
+        <div class="lbl">SQL</div>
+      </div>
+      <div class="arch-box" style="flex:1;border-color:rgba(34,197,94,.3);">
+        <div class="arch-label">Datos</div>
+        <div class="arch-name">SQLite</div>
+        <div class="arch-port">real_estate.db</div>
+        <div style="font-size:.6em;color:var(--muted);margin-top:8px;line-height:1.6;">
+          inmuebles<br>precio_historial<br>usuarios
+        </div>
+      </div>
+    </div>
+    <div class="highlight-box" style="width:100%;">
+      📌 Todo acceso al backend pasa por <code style="font-family:'JetBrains Mono',monospace;color:var(--cyan);background:rgba(6,182,212,.12);padding:1px 8px;border-radius:4px;">frontend/lib/api.ts</code> — nunca fetch directo desde componentes.
+    </div>
+    <div class="card fragment" style="margin-top:16px;width:100%;padding:14px 22px;">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <span style="font-size:.65em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">También incluye</span>
+        <span class="badge badge-amber">🕷 Scrapers Python</span>
+        <span style="color:var(--muted);font-size:.65em;">→ escriben directo a SQLite</span>
+        <span class="badge badge-cyan">Normalizer pipeline</span>
+        <span class="badge badge-blue">Deduplicación url_fuente</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 6 — DASHBOARD PRINCIPAL -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Dashboard — 4 secciones</h2></div>
+    <div class="screenshot ss-lg" style="margin-bottom:18px;">
+      <div class="cam">📸</div>
+      <div class="label">SCREENSHOT: Listado de propiedades en grid</div>
+      <div class="hint">Reemplazar con captura de la sección "Listado" del dashboard en :3000</div>
+    </div>
+    <div class="pill-row">
+      <span class="badge badge-blue">🏠 Listado</span>
+      <span class="badge badge-cyan">✏️ Crear propiedad</span>
+      <span class="badge badge-green">🔍 Buscar</span>
+      <span class="badge badge-amber">📊 Estadísticas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ SLIDE 7 — CRUD / CREAR / MODAL -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Gestión de propiedades</h2></div>
+    <div class="cols cols-2" style="width:100%;margin-bottom:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="screenshot ss-md">
+          <div class="cam">📸</div>
+          <div class="label">SCREENSHOT: Formulario de creación</div>
+          <div class="hint">Captura de la sección "Crear Propiedad" con campos llenos</div>
+        </div>
+        <div style="font-size:.6em;color:var(--muted);text-align:center;">Formulario de alta</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="screenshot ss-md">
+          <div class="cam">📸</div>
+          <div class="label">SCREENSHOT: Modal de detalles</div>
+          <div class="hint">Captura del modal con info completa de una propiedad</div>
+        </div>
+        <div style="font-size:.6em;color:var(--muted);text-align:center;">Modal de detalles</div>
+      </div>
+    </div>
+    <div class="card" style="width:100%;padding:12px 20px;">
+      <div style="font-size:.62em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Validaciones en servidor (forms.py)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="badge badge-blue">título 5–200 chars</span>
+        <span class="badge badge-blue">precio ≥ 0</span>
+        <span class="badge badge-cyan">tipo: Casa / Apto / Villa / Penthouse / Comercio / Oficina / Terreno</span>
+        <span class="badge badge-green">estado: disponible / alquilada / vendida / en-tramite</span>
+        <span class="badge badge-amber">contacto (nombre · teléfono · email) opcional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ SLIDE 8 — BÚSQUEDA -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Búsqueda sin recargar página</h2></div>
+    <div class="screenshot ss-lg" style="margin-bottom:16px;">
+      <div class="cam">📸</div>
+      <div class="label">SCREENSHOT: Búsqueda con filtros activos y resultados</div>
+      <div class="hint">Captura de la sección "Buscar" con al menos 2 filtros y resultados visibles</div>
+    </div>
+    <div class="cols cols-2" style="width:100%;gap:12px;">
+      <div class="pill-row" style="justify-content:flex-start;gap:6px;">
+        <span class="badge badge-blue">📍 Ubicación (texto libre)</span>
+        <span class="badge badge-cyan">💰 Precio mínimo</span>
+        <span class="badge badge-green">💰 Precio máximo</span>
+      </div>
+      <div class="code-block">GET /api/inmuebles?ubicacion=Naco
+  &precio_min=100000
+  &precio_max=400000</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ SLIDE 9 — CALCULADORA -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>¿Cuánto vale realmente?</h2></div>
+    <div class="cols cols-55" style="width:100%;">
+      <div class="screenshot ss-lg">
+        <div class="cam">📸</div>
+        <div class="label">SCREENSHOT: Calculadora con resultado</div>
+        <div class="hint">Captura del tab "Calculadora" con una estimación visible (precio + barra de confianza)</div>
+      </div>
+      <div class="card" style="padding:22px 24px;">
+        <div style="font-size:.65em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:14px;">Algoritmo: similitud ponderada</div>
+        <ul class="steps">
+          <li class="fragment">
+            <div class="step-num">1</div>
+            <div style="line-height:1.5;">Filtra comparables del mismo tipo <span style="color:var(--muted)">(hasta 200 propiedades)</span></div>
+          </li>
+          <li class="fragment">
+            <div class="step-num">2</div>
+            <div style="line-height:1.5;">Puntúa por área, habitaciones y sector</div>
+          </li>
+          <li class="fragment">
+            <div class="step-num">3</div>
+            <div style="line-height:1.5;">Limpia outliers <span style="color:var(--muted)">(método IQR ×1.5)</span></div>
+          </li>
+          <li class="fragment">
+            <div class="step-num">4</div>
+            <div style="line-height:1.5;">Calcula promedio ponderado por similitud</div>
+          </li>
+        </ul>
+        <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="badge badge-blue">Precio estimado</span>
+          <span class="badge badge-cyan">Rango P25–P75</span>
+          <span class="badge badge-green">Confianza %</span>
+          <span class="badge badge-amber">Precio / m²</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ SLIDE 10 — MAPA DE CALOR -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>¿Dónde están los precios más altos?</h2></div>
+    <div class="cols cols-55" style="width:100%;">
+      <div class="screenshot ss-lg">
+        <div class="cam">📸</div>
+        <div class="label">SCREENSHOT: Mapa de calor de Santo Domingo</div>
+        <div class="hint">Captura del tab "Mapa de Calor" con círculos coloreados por sector visibles</div>
+      </div>
+      <div class="card" style="padding:22px 24px;">
+        <div style="font-size:.65em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:14px;">Características del mapa</div>
+        <ul style="display:flex;flex-direction:column;gap:8px;">
+          <li class="fragment" style="display:flex;gap:10px;font-size:.73em;align-items:flex-start;">
+            <span style="color:var(--cyan);flex-shrink:0;">◆</span>
+            <span><strong>33+ sectores</strong> con coordenadas verificadas</span>
+          </li>
+          <li class="fragment" style="display:flex;gap:10px;font-size:.73em;align-items:flex-start;">
+            <span style="color:var(--cyan);flex-shrink:0;">◆</span>
+            <span>Color: <span style="color:#60a5fa;">Azul (barato)</span> → <span style="color:#f87171;">Rojo (caro)</span></span>
+          </li>
+          <li class="fragment" style="display:flex;gap:10px;font-size:.73em;align-items:flex-start;">
+            <span style="color:var(--cyan);flex-shrink:0;">◆</span>
+            <span>Tamaño proporcional a cantidad de propiedades</span>
+          </li>
+          <li class="fragment" style="display:flex;gap:10px;font-size:.73em;align-items:flex-start;">
+            <span style="color:var(--cyan);flex-shrink:0;">◆</span>
+            <span>Click en sector: precio promedio, mín/máx, precio/m²</span>
+          </li>
+          <li class="fragment" style="display:flex;gap:10px;font-size:.73em;align-items:flex-start;">
+            <span style="color:var(--cyan);flex-shrink:0;">◆</span>
+            <span>Métrica alterneable: precio / cantidad / precio m²</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SLIDE 11 — SCRAPERS -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Datos reales del mercado</h2></div>
+    <div class="cols cols-2" style="width:100%;margin-bottom:20px;">
+      <div class="card" style="text-align:center;padding:22px 18px;">
+        <div style="font-size:1.8em;margin-bottom:8px;">🌐</div>
+        <div style="font-size:.78em;font-weight:700;color:#fff;margin-bottom:4px;">clasificados.com.do</div>
+        <div style="font-size:.65em;color:var(--muted);">Client-side paging — todos los ítems en el DOM</div>
+      </div>
+      <div class="card" style="text-align:center;padding:22px 18px;border-color:rgba(59,130,246,.3);">
+        <div style="font-size:1.8em;margin-bottom:8px;">🏘️</div>
+        <div style="font-size:.78em;font-weight:700;color:#fff;margin-bottom:4px;">supercasas.com</div>
+        <div style="font-size:.65em;color:var(--muted);">Paginación via <code style="font-family:'JetBrains Mono',monospace;">?PagingPageSkip=N</code> — 24 ítems/página</div>
+      </div>
+    </div>
+    <div style="width:100%;text-align:left;font-size:.62em;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px;">Pipeline de procesamiento</div>
+    <div class="pipeline" style="margin-bottom:20px;">
+      <div class="pipe-step">🕷 Extracción</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">🔧 Normalización</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">🧹 Deduplicación</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">💾 Base de Datos</div>
+    </div>
+    <div class="card" style="width:100%;padding:14px 20px;">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;">
+        <span class="badge badge-blue">Sectores normalizados</span>
+        <span class="badge badge-cyan">DOP → USD</span>
+        <span class="badge badge-green">Cálculo precio_m²</span>
+        <span class="badge badge-amber">Dedup. por url_fuente UNIQUE</span>
+        <span class="badge badge-orange">Historial de precios</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════ SLIDE 12 — API REST -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>8 endpoints documentados</h2></div>
+    <div class="card" style="width:100%;padding:8px 4px;overflow:hidden;">
+      <table class="api-table">
+        <thead>
+          <tr>
+            <th style="width:90px;">Método</th>
+            <th>Endpoint</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="method m-get">GET</span></td><td class="endpoint-path">/api/inmuebles</td><td>Listar con filtros opcionales</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="endpoint-path">/api/inmuebles/&lt;id&gt;</td><td>Obtener por ID</td></tr>
+          <tr><td><span class="method m-post">POST</span></td><td class="endpoint-path">/api/inmuebles</td><td>Crear propiedad (validado)</td></tr>
+          <tr><td><span class="method m-put">PUT</span> <span class="method m-patch" style="margin-left:4px;">PATCH</span></td><td class="endpoint-path">/api/inmuebles/&lt;id&gt;</td><td>Actualizar campos</td></tr>
+          <tr><td><span class="method m-delete">DELETE</span></td><td class="endpoint-path">/api/inmuebles/&lt;id&gt;</td><td>Eliminar por ID</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="endpoint-path">/api/calculator/estimate</td><td>Estimación de precio justo</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="endpoint-path">/api/sectores/heatmap</td><td>Datos para mapa de calor</td></tr>
+          <tr><td><span class="method m-get">GET</span></td><td class="endpoint-path">/api/health</td><td>Estado de la API</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="highlight-box fragment" style="width:100%;margin-top:14px;">
+      Todas las respuestas usan el envelope&nbsp; <code style="font-family:'JetBrains Mono',monospace;color:var(--cyan);">{ "ok": true/false, ... }</code>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ SLIDE 13 — BASE DE DATOS -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Esquema SQLite</h2></div>
+    <div class="card" style="width:100%;padding:8px 4px;margin-bottom:14px;overflow:hidden;">
+      <table class="schema-table">
+        <thead>
+          <tr><th>Campo</th><th>Tipo</th><th>Descripción</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="field-name">id</td><td class="field-type">INTEGER PK</td><td class="field-note">Autoincremental</td></tr>
+          <tr><td class="field-name">titulo</td><td class="field-type">TEXT</td><td class="field-note">Nombre del inmueble (5–200 chars)</td></tr>
+          <tr><td class="field-name">precio</td><td class="field-type">REAL</td><td class="field-note">Precio en moneda original</td></tr>
+          <tr><td class="field-name">moneda</td><td class="field-type">TEXT</td><td class="field-note">DOP / USD</td></tr>
+          <tr><td class="field-name">ubicacion</td><td class="field-type">TEXT</td><td class="field-note">Texto libre de ubicación</td></tr>
+          <tr><td class="field-name">sector_normalizado</td><td class="field-type">TEXT</td><td class="field-note">Sector canónico (scraping)</td></tr>
+          <tr><td class="field-name">area_m2 · tipo · estado</td><td class="field-type">REAL / TEXT</td><td class="field-note">Características físicas y estado</td></tr>
+          <tr><td class="field-name">lat · lng</td><td class="field-type">REAL</td><td class="field-note">Coordenadas (datos scrapeados)</td></tr>
+          <tr><td class="field-name">precio_m2</td><td class="field-type">REAL</td><td class="field-note">Calculado automáticamente</td></tr>
+          <tr><td class="field-name field-special">url_fuente</td><td class="field-type field-special">TEXT UNIQUE</td><td class="field-note field-special">⭐ Clave de deduplicación</td></tr>
+          <tr><td class="field-name">contacto · caracteristicas</td><td class="field-type">TEXT</td><td class="field-note">JSON serializado</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="highlight-box" style="width:100%;">
+      La tabla <code style="font-family:'JetBrains Mono',monospace;color:var(--amber);">precio_historial(inmueble_id, precio, moneda, fecha)</code> ya está creada para tracking futuro de precios.
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ SLIDE 14 — RETOS TÉCNICOS -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Problemas que resolvimos</h2></div>
+    <div class="card" style="width:100%;padding:14px 22px;">
+      <div class="problem-row fragment">
+        <span class="prob">🟡 Leaflet + SSR Next.js</span>
+        <span class="arrow-r">→</span>
+        <span class="sol"><code style="font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--cyan);">dynamic(import, {ssr:false})</code> con dos componentes separados</span>
+      </div>
+      <div class="problem-row fragment">
+        <span class="prob">🟡 Columna <code style="font-family:'JetBrains Mono',monospace;">estado</code> faltante</span>
+        <span class="arrow-r">→</span>
+        <span class="sol"><code style="font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--cyan);">migrate_scraping_columns()</code> corre automáticamente al importar el módulo</span>
+      </div>
+      <div class="problem-row fragment">
+        <span class="prob">🟡 Estructura respuesta /api/stats</span>
+        <span class="arrow-r">→</span>
+        <span class="sol">Ajuste del envelope: <code style="font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--cyan);">{ ok, stats: { total, precio_promedio, ... } }</code></span>
+      </div>
+      <div class="problem-row fragment">
+        <span class="prob">🟡 Closure stale en calculadora</span>
+        <span class="arrow-r">→</span>
+        <span class="sol"><code style="font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--cyan);">setResultado(null)</code> al inicio de cada cálculo + eliminación del <code style="font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--cyan);">useCallback</code></span>
+      </div>
+      <div class="problem-row fragment">
+        <span class="prob">🟡 Sectores con nombres inconsistentes</span>
+        <span class="arrow-r">→</span>
+        <span class="sol">Matcher fuzzy en 3 niveles: <strong>exacto → substring → token match</strong> (≥4 chars)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ SLIDE 15 — ESTADO ACTUAL -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>¿Qué está listo?</h2></div>
+    <div class="cols cols-2" style="width:100%;">
+      <div class="card" style="padding:18px 22px;">
+        <ul class="checklist">
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">CRUD de inmuebles completo</span></li>
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">API REST — 8 endpoints</span></li>
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">Dashboard Next.js funcional</span></li>
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">Scraper clasificados.com.do</span></li>
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">Scraper supercasas.com</span></li>
+        </ul>
+      </div>
+      <div class="card" style="padding:18px 22px;">
+        <ul class="checklist">
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">Calculadora de precio justo</span></li>
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">Mapa de calor por sector</span></li>
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">Estadísticas en tiempo real</span></li>
+          <li class="fragment"><span class="check-icon">✅</span><span style="font-size:.75em;">Pipeline de normalización</span></li>
+          <li class="fragment"><span class="check-icon" style="filter:grayscale(1);opacity:.7;">🔄</span><span style="font-size:.75em;color:var(--muted);">Auth JWT/RBAC <em>(en desarrollo)</em></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ SLIDE 16 — ROADMAP -->
+<section>
+  <div class="slide top">
+    <div class="section-title"><h2>Próximos pasos</h2></div>
+    <div class="card" style="width:100%;padding:14px 24px;">
+      <div class="roadmap-item fragment">
+        <div class="roadmap-icon">🔐</div>
+        <div class="roadmap-text">
+          <strong>Auth completo</strong>
+          <span>Login con JWT, roles admin / agente / visitante, panel de usuarios</span>
+        </div>
+      </div>
+      <div class="roadmap-item fragment">
+        <div class="roadmap-icon">🔔</div>
+        <div class="roadmap-text">
+          <strong>Alertas de precio</strong>
+          <span>Notificar por email/push cuando un sector baje de umbral personalizado</span>
+        </div>
+      </div>
+      <div class="roadmap-item fragment">
+        <div class="roadmap-icon">📈</div>
+        <div class="roadmap-text">
+          <strong>Historial de precios</strong>
+          <span>Gráfico de evolución por propiedad — tabla <code style="font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:.9em;">precio_historial</code> ya creada</span>
+        </div>
+      </div>
+      <div class="roadmap-item fragment">
+        <div class="roadmap-icon">📄</div>
+        <div class="roadmap-text">
+          <strong>Exportar reportes</strong>
+          <span>PDF y Excel para corredores inmobiliarios</span>
+        </div>
+      </div>
+      <div class="roadmap-item fragment">
+        <div class="roadmap-icon">📱</div>
+        <div class="roadmap-text">
+          <strong>App móvil</strong>
+          <span>React Native consumiendo la misma API REST — sin cambios en backend</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ SLIDE 17 — CIERRE -->
+<section>
+  <div class="title-bg"></div>
+  <div style="position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center;gap:28px;padding:40px 60px;box-sizing:border-box;">
+    <div style="text-align:center;">
+      <div style="font-size:.65em;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);margin-bottom:12px;">¿Qué logramos?</div>
+      <blockquote style="font-size:1em;font-weight:500;line-height:1.7;max-width:720px;margin:0;border:none;color:#e2e8f0;padding:0;font-style:italic;">
+        "Pasamos de datos dispersos en múltiples portales web a una plataforma unificada que permite
+        <strong style="color:#fff;">buscar, comparar, calcular y visualizar</strong>
+        el mercado inmobiliario de Santo Domingo."
+      </blockquote>
+    </div>
+    <div class="skill-grid" style="max-width:720px;">
+      <div class="skill-item fragment">⚡ API REST</div>
+      <div class="skill-item fragment">🖥 Next.js App Router</div>
+      <div class="skill-item fragment">🕷 Web Scraping</div>
+      <div class="skill-item fragment">🧮 Algoritmos similitud</div>
+      <div class="skill-item fragment">🗺 Mapas interactivos</div>
+      <div class="skill-item fragment">🏗 Arquitectura cliente-servidor</div>
+    </div>
+    <div style="text-align:center;margin-top:8px;">
+      <h2 class="gradient-text" style="font-size:2em;margin:0;">¿Preguntas?</h2>
+      <p style="font-size:.68em;color:var(--muted);margin-top:8px;">Demo en vivo disponible · Código en GitHub</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    progress: true,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    controls: true,
+    controlsTutorial: false,
+    center: true,
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 2.0,
+  });
+</script>
+</body>
+</html>

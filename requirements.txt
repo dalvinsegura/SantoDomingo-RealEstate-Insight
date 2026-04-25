@@ -1,6 +1,0 @@
-selenium
-beautifulsoup4
-pymongo
-pandas
-numpy
-flask
